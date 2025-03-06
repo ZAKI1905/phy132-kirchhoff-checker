@@ -18,7 +18,7 @@ APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD
 st.title("PHY 132 - Kirchhoff Current Checker")
 
 # Intro Text
-st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University.")
+st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University. 🤓")
 
 # Optional Name Field
 name = st.text_input("Optional: Enter your name (leave blank if you prefer to remain anonymous)")
