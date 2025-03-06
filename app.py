@@ -10,10 +10,6 @@ with open('correct_answers.json', 'r') as file:
 # Tolerance for rounding (in mA)
 tolerance = 0.5
 
-# EKU Logo
-logo_path = f"https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/img/PrimaryLogo_Maroon.png"
-st.image(logo_path, width=200)
-
 # Title
 st.title("PHY 132 - Kirchhoff Current Checker")
 
@@ -78,3 +74,7 @@ with st.expander("📚 Kirchhoff’s Rules Recap"):
 st.write("---")
 st.write("This tool was developed for **PHY 132 - College Physics II** at Eastern Kentucky University.")
 st.write("For questions, contact: **Professor Zakeri** (m.zakeri@eku.edu)")
+
+# EKU Logo
+logo_path = f"https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/img/PrimaryLogo_Maroon.png"
+st.image(logo_path, width=200)
