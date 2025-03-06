@@ -65,13 +65,13 @@ if st.button("Check Answers"):
 
 # Kirchhoff Recap
 with st.expander("📚 Kirchhoff’s Rules Recap"):
-    st.write(
-        "**Kirchhoff's Voltage Law (KVL)**: The sum of all voltages around a closed loop is zero.
-"
-        "**Kirchhoff's Current Law (KCL)**: The sum of currents entering a junction equals the sum of currents leaving the junction.
-"
-        "Use these rules to solve for the currents in each resistor."
-    )
+    st.write("""
+    **Kirchhoff's Voltage Law (KVL)**: The sum of all voltages around a closed loop is zero.
+    
+    **Kirchhoff's Current Law (KCL)**: The sum of currents entering a junction equals the sum of currents leaving the junction.
+    
+    Use these rules to solve for the currents in each resistor.
+    """)
 
 # Footer with contact info
 st.write("---")
