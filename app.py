@@ -21,7 +21,7 @@ st.title("PHY 132 - Kirchhoff Current Checker")
 st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University. 🤓")
 
 # Optional Name Field
-name = st.text_input("Optional: Enter your name (leave blank if you prefer to remain anonymous)")
+name = st.text_input("Optional: Enter your name (leave blank if you prefer to remain anonymous 🫣)")
 
 # Select Problem Set
 set_number = st.number_input("Select your problem set number (1 to 10):", min_value=1, max_value=10, step=1)
