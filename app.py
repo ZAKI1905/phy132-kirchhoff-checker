@@ -23,7 +23,7 @@ st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentuc
 set_number = st.number_input("Select your problem set number (1 to 10):", min_value=1, max_value=10, step=1)
 
 # Display corresponding circuit diagram
-diagram_path = f"https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/Diagrams/circuit_set_{set_number}.png"
+diagram_path = f"https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/Diagrams/circuit_set_{set_number}.png"
 st.image(diagram_path, caption=f"Problem Set {set_number} Circuit Diagram")
 
 # Input Fields for Currents
