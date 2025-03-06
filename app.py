@@ -70,11 +70,16 @@ with st.expander("📚 Kirchhoff’s Rules Recap"):
     Use these rules to solve for the currents in each resistor.
     """)
 
-# Footer with contact info
-st.write("---")
-st.write("This tool was developed for **PHY 132 - College Physics II** at Eastern Kentucky University.")
-st.write("For questions, contact: **Professor Zakeri** (m.zakeri@eku.edu)")
-
-# EKU Logo
-logo_path = f"https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/img/PrimaryLogo_Maroon.png"
-st.image(logo_path, width=200)
+footer = """
+---
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 0.9em;">
+        This tool was developed for <b>PHY 132 - College Physics II</b> at Eastern Kentucky University.<br>
+        For questions, contact: <b>Professor Zakeri</b> (m.zakeri@eku.edu)
+    </div>
+    <div>
+        <img src="https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/img/PrimaryLogo_Maroon.png" width="150">
+    </div>
+</div>
+"""
+st.markdown(footer, unsafe_allow_html=True)
