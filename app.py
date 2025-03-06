@@ -11,7 +11,8 @@ with open('correct_answers.json', 'r') as file:
 tolerance = 0.5
 
 # EKU Logo
-st.image("https://www.eku.edu/sites/all/themes/eku_core/images/eku-logo.png", width=200)
+logo_path = f"https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/img/PrimaryLogo_Maroon.png"
+st.image(logo_path, width=200)
 
 # Title
 st.title("PHY 132 - Kirchhoff Current Checker")
