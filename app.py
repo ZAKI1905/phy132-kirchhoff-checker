@@ -14,7 +14,7 @@ tolerance = 0.5
 st.title("PHY 132 - Kirchhoff Current Checker")
 
 # Intro Text
-st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University.")
+st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University. 🤓")
 
 # Select Problem Set
 set_number = st.number_input("Select your problem set number (1 to 10):", min_value=1, max_value=10, step=1)
