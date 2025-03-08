@@ -121,11 +121,16 @@ def check_answer(set_number, I1, I2, I3):
     else:
         return "❌ Incorrect. Try again!"
 
-# Submit Button for Current Check
+# Submit Button
 if st.button("Check Answers"):
     result = check_answer(set_number, I1, I2, I3)
-    st.write(result)
-
+    log_submission_to_apps_script(set_number, I1, I2, I3, result, name)
+    if result.startswith("✅"):
+        st.success(result)
+    elif result.startswith("⚠️"):
+        st.warning(result)
+    else:
+        st.error(result)
 
 # Kirchhoff Recap
 with st.expander("📚 Kirchhoff’s Rules Recap"):
