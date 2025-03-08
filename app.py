@@ -95,7 +95,7 @@ for i in range(3):
 
 # Check Kirchhoff Equations
 if st.button("Check Kirchhoff Equations"):
-    expected_eqs = expected_equations[str(set_number)]
+    expected_eqs = expected_eqs[str(set_number)]
     matches = compare_equations(student_eqs, expected_eqs)
 
     feedback_messages = []
