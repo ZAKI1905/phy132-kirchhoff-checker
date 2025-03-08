@@ -64,8 +64,8 @@ def compute_kirchhoff_coefficients(V1, V2, R1, R2, R3):
     eq4 = (-R1, -R2, 0, V1 - V2)  # V1 - R2 I2 - V2 - R1 I1 = 0 (Big loop)
     return [eq1, eq2, eq3, eq4]
 
-# Google Apps Script Web App URL (replace with your actual deployment URL)
-APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
+# Google Apps Script Web App URL
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD8kNgpZPL1TiYNX0hry-nzAzgJJOXHquNRsxOPb1hY9coJk/exec"
 
 # Title
 st.title("PHY 132 - Kirchhoff Current Checker")
