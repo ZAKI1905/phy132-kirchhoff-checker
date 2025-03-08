@@ -64,20 +64,24 @@ with open('data/javab.json', 'r') as file:
 # Tolerance for rounding (in mA)
 tolerance = 1
 
-# Define problem sets dynamically
-problems = {
-    "1": (15, 5, 120, 180, 220),
-    "2": (18, 6, 150, 220, 270),
-    "3": (12, 3, 100, 200, 150),
-    "4": (16, 7, 130, 170, 190),
-    "5": (20, 8, 200, 250, 300),
-    "6": (14, 5, 140, 160, 180),
-    "7": (17, 4, 180, 220, 240),
-    "8": (19, 6, 160, 210, 230),
-    "9": (13, 3, 110, 140, 160),
-    "10": (15, 4, 120, 150, 170)
-}
+# # Define problem sets dynamically
+# problems = {
+#     "1": (15, 5, 120, 180, 220),
+#     "2": (18, 6, 150, 220, 270),
+#     "3": (12, 3, 100, 200, 150),
+#     "4": (16, 7, 130, 170, 190),
+#     "5": (20, 8, 200, 250, 300),
+#     "6": (14, 5, 140, 160, 180),
+#     "7": (17, 4, 180, 220, 240),
+#     "8": (19, 6, 160, 210, 230),
+#     "9": (13, 3, 110, 140, 160),
+#     "10": (15, 4, 120, 150, 170)
+# }
 
+# Load problem sets from JSON file
+with open("problems.json", "r") as file:
+    problems = json.load(file)
+    
 # Function to compute Kirchhoff equation coefficients
 def compute_kirchhoff_coefficients(V1, V2, R1, R2, R3):
     eq1 = (1, -1, -1, 0)  # I1 - I2 - I3 = 0 (Junction rule)
