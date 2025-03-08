@@ -106,10 +106,10 @@ def is_close(actual, expected, tol=tolerance):
     return abs(actual - expected) <= tol
 
 def check_answer(set_number, I1, I2, I3):
-    if str(set_number) not in correct_answers:
+    if str(set_number) not in javab:
         return "⚠️ Invalid set number. Please check with your instructor."
     
-    correct = correct_answers[str(set_number)]
+    correct = javab[str(set_number)]
     close_match = all(is_close(student, correct_value) for student, correct_value in zip([I1, I2, I3], correct))
 
     if [I1, I2, I3] == correct:
