@@ -97,7 +97,7 @@ if st.button("Check Kirchhoff Equations"):
     st.write("\n".join(feedback_messages))
 
 # Check Answer Logic
-def is_close(actual, expected, tol=0.5):
+def is_close(actual, expected, tol=tolerance):
     return abs(actual - expected) <= tol
 
 def check_answer(set_number, I1, I2, I3):
