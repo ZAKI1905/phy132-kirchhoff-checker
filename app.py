@@ -36,19 +36,26 @@ with open('data/javab.json', 'r') as file:
 # Tolerance for rounding (in mA)
 tolerance = 1
 
-# Expected Kirchhoff equation coefficients for each set (precomputed)
-expected_equations = {
-    "1": [(120, 180, -220, 15), (150, 220, -270, 18), (1, -1, -1, 0)],
-    "2": [(140, 200, -260, 17), (170, 240, -310, 22), (1, -1, -1, 0)],
-    "3": [(100, 200, -150, 12), (110, 180, -130, 14), (1, -1, -1, 0)],
-    "4": [(130, 170, -190, 16), (140, 190, -220, 19), (1, -1, -1, 0)],
-    "5": [(200, 250, -300, 20), (220, 270, -320, 23), (1, -1, -1, 0)],
-    "6": [(140, 160, -180, 14), (160, 190, -210, 16), (1, -1, -1, 0)],
-    "7": [(180, 220, -240, 17), (200, 260, -280, 21), (1, -1, -1, 0)],
-    "8": [(160, 210, -230, 19), (170, 220, -250, 20), (1, -1, -1, 0)],
-    "9": [(110, 140, -160, 13), (120, 150, -170, 15), (1, -1, -1, 0)],
-    "10": [(120, 150, -170, 15), (130, 180, -190, 18), (1, -1, -1, 0)]
+# Define problem sets dynamically
+problems = {
+    "1": (15, 5, 120, 180, 220),
+    "2": (18, 6, 150, 220, 270),
+    "3": (12, 3, 100, 200, 150),
+    "4": (16, 7, 130, 170, 190),
+    "5": (20, 8, 200, 250, 300),
+    "6": (14, 5, 140, 160, 180),
+    "7": (17, 4, 180, 220, 240),
+    "8": (19, 6, 160, 210, 230),
+    "9": (13, 3, 110, 140, 160),
+    "10": (15, 4, 120, 150, 170)
 }
+
+# Function to compute Kirchhoff equation coefficients
+def compute_kirchhoff_coefficients(V1, V2, R1, R2, R3):
+    eq1 = (1, -1, -1, 0)  # I1 - I2 - I3 = 0 (Junction rule)
+    eq2 = (-R1, 0, -R3, V1)  # V1 - R3 I3 - R1 I1 = 0 (Left loop)
+    eq3 = (0, R2, -R3, -V2)  # V2 + R2 I2 - R3 I3 = 0 (Right loop)
+    return [eq1, eq2, eq3]
 
 # Google Apps Script Web App URL (replace with your actual deployment URL)
 APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD8kNgpZPL1TiYNX0hry-nzAzgJJOXHquNRsxOPb1hY9coJk/exec"
@@ -65,9 +72,15 @@ name = st.text_input("Optional: Enter your name (leave blank if you prefer to re
 # Select Problem Set
 set_number = st.number_input("Select your problem set number (1 to 10):", min_value=1, max_value=10, step=1)
 
+# Get corresponding circuit parameters
+V1, V2, R1, R2, R3 = problems[str(set_number)]
+
 # Display corresponding circuit diagram
 diagram_path = f"https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/Diagrams/circuit_set_{set_number}.png"
 st.image(diagram_path, caption=f"Problem Set {set_number} Circuit Diagram")
+
+# Compute expected Kirchhoff equations dynamically
+expected_eqs = compute_kirchhoff_coefficients(V1, V2, R1, R2, R3)
 
 # Input Fields for Kirchhoff Coefficients
 st.write("### Enter your Kirchhoff equation coefficients")
