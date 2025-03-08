@@ -5,9 +5,13 @@ import requests
 import numpy as np
 from datetime import datetime
 
-# Load correct answers from the JSON file (assumed to be in the same directory)
-with open('correct_answers.json', 'r') as file:
-    correct_answers = json.load(file)
+
+# Load javab from the JSON file
+with open('data/javab.json', 'r') as file:
+    javab = json.load(file)
+
+# Tolerance for rounding (in mA)
+tolerance = 1
 
 # Expected Kirchhoff equation coefficients for each set (precomputed)
 expected_equations = {
@@ -23,17 +27,17 @@ expected_equations = {
     "10": [(120, 150, -170, 15), (130, 180, -190, 18), (1, -1, -1, 0)]
 }
 
-# Apps Script Webhook (Replace with actual URL)
-APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
+# Google Apps Script Web App URL (replace with your actual deployment URL)
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD8kNgpZPL1TiYNX0hry-nzAzgJJOXHquNRsxOPb1hY9coJk/exec"
 
 # Title
 st.title("PHY 132 - Kirchhoff Current Checker")
 
 # Intro Text
-st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University.")
+st.write("Welcome to the Kirchhoff Current Checker for PHY 132 at Eastern Kentucky University. 🤓")
 
 # Optional Name Field
-name = st.text_input("Optional: Enter your name (leave blank if you prefer to remain anonymous)")
+name = st.text_input("Optional: Enter your name (leave blank if you prefer to remain anonymous 🫣)")
 
 # Select Problem Set
 set_number = st.number_input("Select your problem set number (1 to 10):", min_value=1, max_value=10, step=1)
