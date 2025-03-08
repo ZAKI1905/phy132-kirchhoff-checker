@@ -67,7 +67,12 @@ I3 = st.number_input("Current I3 (mA)", value=0.0, format="%.2f")
 def normalize_equation(eq):
     """ Normalize an equation by dividing all terms by the first nonzero coefficient. """
     coeffs = np.array(eq, dtype=np.float64)
-    first_nonzero = np.nonzero(coeffs[:-1])[0][0]  # Find the first nonzero coefficient (ignore constant term)
+    nonzero_indices = np.nonzero(coeffs[:-1])[0]  # Find nonzero coefficients (ignore constant term)
+    
+    if len(nonzero_indices) == 0:  # If all coefficients are zero, return as-is to avoid errors
+        return coeffs
+            
+    first_nonzero = nonzero_indices[0]  # Get index of first nonzero coefficient
     return coeffs / coeffs[first_nonzero]  # Normalize
 
 def compare_equations(student_eqs, expected_eqs):
