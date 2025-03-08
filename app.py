@@ -154,3 +154,29 @@ def check_answer(set_number, I1, I2, I3):
 if st.button("Check Answers"):
     result = check_answer(set_number, I1, I2, I3)
     st.write(result)
+
+
+# Kirchhoff Recap
+with st.expander("📚 Kirchhoff’s Rules Recap"):
+    st.write("""
+    **Kirchhoff's Voltage Law (KVL)**: The sum of all voltages around a closed loop is zero.
+
+    **Kirchhoff's Current Law (KCL)**: The sum of currents entering a junction equals the sum of currents leaving the junction.
+
+    Use these rules to solve for the currents in each resistor.
+    """)
+
+# Footer with contact info and right-aligned EKU logo
+footer = '''
+---
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        This tool was developed for <b>PHY 132 - College Physics II</b> at Eastern Kentucky University.<br>
+        For questions, contact: <b>Professor Zakeri</b> (m.zakeri@eku.edu)
+    </div>
+    <div>
+        <img src="https://raw.githubusercontent.com/ZAKI1905/phy132-kirchhoff-checker/main/img/PrimaryLogo_Maroon.png" width="150">
+    </div>
+</div>
+'''
+st.markdown(footer, unsafe_allow_html=True)
