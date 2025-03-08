@@ -5,7 +5,30 @@ import requests
 import numpy as np
 from datetime import datetime
 
+# Normalize equations for comparison
+def normalize_equation(eq):
+    """ Normalize an equation by dividing all terms by the first nonzero coefficient. """
+    coeffs = np.array(eq, dtype=np.float64)
+    nonzero_indices = np.nonzero(coeffs[:-1])[0]  # Find nonzero coefficients (ignore constant term)
+    
+    if len(nonzero_indices) == 0:  # If all coefficients are zero, return as-is to avoid errors
+        return coeffs
+            
+    first_nonzero = nonzero_indices[0]  # Get index of first nonzero coefficient
+    return coeffs / coeffs[first_nonzero]  # Normalize
 
+def compare_equations(student_eqs, expected_eqs):
+    """ Check if student equations match expected equations (within tolerance). """
+    normalized_student_eqs = [normalize_equation(eq) for eq in student_eqs]
+    normalized_expected_eqs = [normalize_equation(eq) for eq in expected_eqs]
+
+    matches = []
+    for stud_eq in normalized_student_eqs:
+        match_found = any(np.allclose(stud_eq, exp_eq, atol=0.1) for exp_eq in normalized_expected_eqs)
+        matches.append(match_found)
+    
+    return matches
+    
 # Load javab from the JSON file
 with open('data/javab.json', 'r') as file:
     javab = json.load(file)
@@ -76,30 +99,6 @@ st.write("### Enter your calculated currents (in mA)")
 I1 = st.number_input("Current I1 (mA)", value=0.0, format="%.2f")
 I2 = st.number_input("Current I2 (mA)", value=0.0, format="%.2f")
 I3 = st.number_input("Current I3 (mA)", value=0.0, format="%.2f")
-
-# Normalize equations for comparison
-def normalize_equation(eq):
-    """ Normalize an equation by dividing all terms by the first nonzero coefficient. """
-    coeffs = np.array(eq, dtype=np.float64)
-    nonzero_indices = np.nonzero(coeffs[:-1])[0]  # Find nonzero coefficients (ignore constant term)
-    
-    if len(nonzero_indices) == 0:  # If all coefficients are zero, return as-is to avoid errors
-        return coeffs
-            
-    first_nonzero = nonzero_indices[0]  # Get index of first nonzero coefficient
-    return coeffs / coeffs[first_nonzero]  # Normalize
-
-def compare_equations(student_eqs, expected_eqs):
-    """ Check if student equations match expected equations (within tolerance). """
-    normalized_student_eqs = [normalize_equation(eq) for eq in student_eqs]
-    normalized_expected_eqs = [normalize_equation(eq) for eq in expected_eqs]
-
-    matches = []
-    for stud_eq in normalized_student_eqs:
-        match_found = any(np.allclose(stud_eq, exp_eq, atol=0.1) for exp_eq in normalized_expected_eqs)
-        matches.append(match_found)
-    
-    return matches
 
 # Check Answer Logic
 def is_close(actual, expected, tol=tolerance):
