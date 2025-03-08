@@ -92,7 +92,7 @@ expected_eqs = compute_kirchhoff_coefficients(V1, V2, R1, R2, R3)
 # Input Fields for Kirchhoff Coefficients
 st.write("### Enter your Kirchhoff equation coefficients in the following format:")
 
-st.latex(r"A \cdot I_1 + B \cdot I_2 \cdot + C \cdot I_3 + D = ")
+st.latex(r"A \cdot I_1 \,+ \, B \cdot I_2 \cdot \, +\,  C \cdot I_3\,  +\,  D \, =\,  0")
 
 st.write("Where:")
 st.markdown(r"""
