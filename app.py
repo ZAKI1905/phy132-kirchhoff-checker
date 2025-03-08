@@ -57,6 +57,20 @@ for i in range(3):
     eq = [st.number_input(f"Eq {i+1}: Coefficient of {label}", value=0.0, format="%.2f") for label in coeff_labels]
     student_eqs.append(eq)
 
+# Check Kirchhoff Equations
+if st.button("Check Kirchhoff Equations"):
+    expected_eqs = expected_equations[str(set_number)]
+    matches = compare_equations(student_eqs, expected_eqs)
+
+    feedback_messages = []
+    for i, match in enumerate(matches):
+        if match:
+            feedback_messages.append(f"✅ Equation {i+1} is correctly set up.")
+        else:
+            feedback_messages.append(f"❌ Equation {i+1} does not match any expected Kirchhoff equation. Check signs and coefficients.")
+
+    st.write("\n".join(feedback_messages))
+    
 # Input Fields for Currents
 st.write("### Enter your calculated currents (in mA)")
 I1 = st.number_input("Current I1 (mA)", value=0.0, format="%.2f")
@@ -86,20 +100,6 @@ def compare_equations(student_eqs, expected_eqs):
         matches.append(match_found)
     
     return matches
-
-# Check Kirchhoff Equations
-if st.button("Check Kirchhoff Equations"):
-    expected_eqs = expected_equations[str(set_number)]
-    matches = compare_equations(student_eqs, expected_eqs)
-
-    feedback_messages = []
-    for i, match in enumerate(matches):
-        if match:
-            feedback_messages.append(f"✅ Equation {i+1} is correctly set up.")
-        else:
-            feedback_messages.append(f"❌ Equation {i+1} does not match any expected Kirchhoff equation. Check signs and coefficients.")
-
-    st.write("\n".join(feedback_messages))
 
 # Check Answer Logic
 def is_close(actual, expected, tol=tolerance):
