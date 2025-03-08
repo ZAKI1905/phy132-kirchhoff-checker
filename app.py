@@ -90,7 +90,15 @@ st.image(diagram_path, caption=f"Problem Set {set_number} Circuit Diagram")
 expected_eqs = compute_kirchhoff_coefficients(V1, V2, R1, R2, R3)
 
 # Input Fields for Kirchhoff Coefficients
-st.write("### Enter your Kirchhoff equation coefficients")
+st.write("### Enter your Kirchhoff equation coefficients in the following format:")
+
+st.latex(r"A \cdot I_1 \cdot + B \cdot I_2 \cdot + C \cdot I_3 + D = ")
+
+st.write("Where:")
+st.markdown("""
+- \( A, B, C \) are the coefficients of \( I_1, I_2, I_3 \), respectively.
+- \( D \) is the constant term (voltage sum).
+""")
 
 coeff_labels = ["I1", "I2", "I3", "Constant"]
 student_eqs = []
