@@ -96,8 +96,8 @@ st.latex(r"A \cdot I_1 + B \cdot I_2 \cdot + C \cdot I_3 + D = ")
 
 st.write("Where:")
 st.markdown(r"""
-- \( A, B, C \) are the coefficients of \( I_1, I_2, I_3 \), respectively.  
-- \( D \) is the constant term (voltage sum).
+- $A, B, C$ are the coefficients of $I_1, I_2, I_3$, respectively.  
+- $D$ is the constant term (voltage sum).
 """, unsafe_allow_html=True)
 
 coeff_labels = ["I1", "I2", "I3", "Constant"]
