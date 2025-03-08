@@ -35,6 +35,28 @@ def check_linear_independence(equations):
     rank = np.linalg.matrix_rank(coeff_matrix)
     return rank == len(equations)
 
+# Log Submission to Google Sheets via Apps Script
+def log_submission_to_apps_script(set_number, I1, I2, I3, result, name=""):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    gs_result = ""
+    if result.startswith("✅"):
+        gs_result = "Correct"
+    elif result.startswith("⚠️"):
+        gs_result = "Almost correct"
+    else:
+        gs_result = "Incorrect"
+
+    payload = {
+        "timestamp": timestamp,
+        "set_number": set_number,
+        "I1": I1,
+        "I2": I2,
+        "I3": I3,
+        "result": gs_result,
+        "name": name
+    }
+    requests.post(APPS_SCRIPT_URL, json=payload)
+    
 # Load javab from the JSON file
 with open('data/javab.json', 'r') as file:
     javab = json.load(file)
