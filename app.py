@@ -36,7 +36,7 @@ def check_linear_independence(equations):
     return rank == len(equations)
 
 # Google Apps Script Web App URL
-APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD8kNgpZPL1TiYNX0hry-nzAzgJJOXHquNRsxOPb1hY9coJk/exec"
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAji0AjItE-uJL1CrCLCHyyNpdj6msfVagwWJDcIc9PEH3PpsP-s7Qr0tGCi9LV9e7/exec"
 
 # Log Submission to Google Sheets via Apps Script
 def log_submission_to_apps_script(set_number, I1, I2, I3, result, name=""):
