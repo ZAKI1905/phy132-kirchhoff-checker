@@ -35,6 +35,9 @@ def check_linear_independence(equations):
     rank = np.linalg.matrix_rank(coeff_matrix)
     return rank == len(equations)
 
+# Google Apps Script Web App URL
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD8kNgpZPL1TiYNX0hry-nzAzgJJOXHquNRsxOPb1hY9coJk/exec"
+
 # Log Submission to Google Sheets via Apps Script
 def log_submission_to_apps_script(set_number, I1, I2, I3, result, name=""):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -56,7 +59,33 @@ def log_submission_to_apps_script(set_number, I1, I2, I3, result, name=""):
         "name": name
     }
     requests.post(APPS_SCRIPT_URL, json=payload)
+
+
+# Log Kirchhoff Submission to Google Sheets via Apps Script
+def log_Kirchhoff_submission_to_apps_script(set_number, student_eqs, name=""):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
+    # Convert student equations to a JSON string
+    student_eqs_str = json.dumps(student_eqs)  # Store equations as a JSON-encoded string
+
+    # Prepare the payload to send
+    payload = {
+        "timestamp": timestamp,
+        "set_number": set_number,
+        "name": name,
+        "student_equations": student_eqs_str,  # Send equations as a string
+        "sheet": "Kirchhoff_Submissions"  # Specify the target sheet name (must be handled in Apps Script)
+    }
+
+    # Send the data to Google Apps Script
+    response = requests.post(APPS_SCRIPT_URL, json=payload)
+
+    # Optional: Print response for debugging
+    if response.status_code == 200:
+        print("Submission logged successfully.")
+    else:
+        print(f"Error logging submission: {response.text}")
+        
 # Load javab from the JSON file
 with open('data/javab.json', 'r') as file:
     javab = json.load(file)
@@ -75,9 +104,6 @@ def compute_kirchhoff_coefficients(V1, V2, R1, R2, R3):
     eq3 = (0, R2, -R3, -V2)  # V2 + R2 I2 - R3 I3 = 0 (Right loop)
     eq4 = (-R1, -R2, 0, V1 - V2)  # V1 - R2 I2 - V2 - R1 I1 = 0 (Big loop)
     return [eq1, eq2, eq3, eq4]
-
-# Google Apps Script Web App URL
-APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeN6BHsSkyc9yORGaxhD8kNgpZPL1TiYNX0hry-nzAzgJJOXHquNRsxOPb1hY9coJk/exec"
 
 # Title
 st.title("PHY 132 - Kirchhoff Current Checker")
@@ -146,7 +172,8 @@ if st.button("Check Kirchhoff Equations"):
             feedback_messages.append(f"❌ Equation {i+1} does not match any expected Kirchhoff equation. Check signs and coefficients.")
 
     st.write("\n".join(feedback_messages))
-
+    log_Kirchhoff_submission_to_apps_script(set_number, student_eqs, name)
+    
 # Input Fields for Currents
 st.write("### Enter your calculated currents (in mA)")
 I1 = st.number_input("Current I1 (mA)", value=0.0, format="%.2f")
